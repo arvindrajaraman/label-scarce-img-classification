@@ -2,7 +2,11 @@
 
 In this Jupyter notebook, I attempt to perform MNIST image classification by minimizing the number of calls to labels for images, in order to simulate working an an environment that is scarce of labeled data.
 
-First, I use a deep auto-encoder architecture to compress the 768-dimensional representation of MNIST images to 32 dimensions and to extract features.
+First, I use a deep auto-encoder architecture to compress the 768-dimensional representation of MNIST images to 32 dimensions and to extract features:
+
+<p align="center">
+  <img height="330" width="450" src="https://raw.githubusercontent.com/arvindrajaraman/label-scarce-img-classification/master/autoencoder_arch.png?token=AHGXVO3UTPVIGVUN3GJV3HLA3VDEM">
+</p>
 
 Then, I iteratively perform k-means clustering. In a certain iteration where we divide the data into k clusters, I find the medoid of each cluster. The medoid of a cluster is the closest datapoint in the dataset to the centroid ("average" or numerical center) of that cluster. I query the medoid's label and assign that label to the entire cluster. I specifically query for the medoid's label in a cluster, because datapoints closer to the fringes have a higher chance of being misclassified; the medoid's label is more likely to be representative of the cluster.
 
